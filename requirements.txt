@@ -1,6 +1,6 @@
 discord.py==2.4.0
 ccxt==4.3.36
-pandas==2.2.2
+pandas==2.2.3        # ← ここを 2.2.3 に変更（または 2.3.2 でもOK）
 numpy==1.26.4
 aiohttp==3.9.5
 requests==2.32.3
