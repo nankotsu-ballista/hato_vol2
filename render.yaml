@@ -1,0 +1,74 @@
+services:
+  - type: worker
+    name: discord-crypto-bot
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    autoDeploy: true
+    envVars:
+      - key: DISCORD_BOT_TOKEN     # ← ダッシュボードで値を入力
+        sync: false
+      - key: CHANNEL1_ID
+        value: "1414417853066514454"
+      - key: CHANNEL2_ID
+        value: "1413827349924806727"
+      # 任意: Webhookを使ってチャンネル2へ送る場合（推奨：環境変数に入れる）
+      # - key: CHANNEL2_WEBHOOK_URL
+      #   value: "https://discord.com/api/webhooks/...."
+
+      # === ETHシグナル調整（必要に応じて） ===
+      - key: SYMBOL
+        value: "ETH/USDT"
+      - key: EXCHANGE_ID
+        value: "binance"
+      - key: TIMEFRAME
+        value: "15m"
+      - key: BB_PERIOD
+        value: "20"
+      - key: BB_STD
+        value: "2.0"
+      - key: RSI_PERIOD
+        value: "14"
+      - key: RSI_OB
+        value: "70"
+      - key: RSI_OS
+        value: "30"
+      - key: CHECK_INTERVAL_S
+        value: "60"
+
+      # === arb_bot.py 用（tekisuto.txtに準拠） ===
+      - key: ENABLED_EXCHANGES
+        value: "bybit,mexc,bitget,bitflyer,bitbank,coincheck,gmocoin,dex0x"
+      - key: QUOTES
+        value: "USDT,USDC,USD,JPY"
+      - key: DEX_PAIRS
+        value: "ETH_USDT,WBTC_USDT,ETH_USDC,WBTC_USDC"
+      - key: DEX_NOTIONAL_USDT
+        value: "1000"
+      - key: DEX_NOTIONAL_USDC
+        value: "1000"
+      - key: MIN_QVOL_USDT
+        value: "300000"
+      - key: MIN_QVOL_USDC
+        value: "300000"
+      - key: MIN_QVOL_USD
+        value: "200000"
+      - key: MIN_QVOL_JPY
+        value: "30000000"
+      - key: REQUIRE_QVOL_BOTH_SIDES
+        value: "0"
+      - key: ALLOW_UNKNOWN_QVOL
+        value: "1"
+      - key: MIN_DETECT_SPREAD_PCT
+        value: "0.8"
+      - key: ALERT_PCT
+        value: "0.80"
+      - key: FEE_BUFFER_PCT
+        value: "0.20"
+      - key: TOPN
+        value: "200"
+      - key: INTERVAL_S
+        value: "10"
+      - key: SHOW_DEX_ROUTE
+        value: "1"
